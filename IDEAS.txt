@@ -27,3 +27,11 @@ Un corsaire anglais et un français, qui font un boss double
 -un shoggoth
 -le capitaine possédé du début
 -Cthulhu (qui sort du corps du boss précédent avoir sa mort)
+
+Scénario/niveaux :
+*Chapitre 0 :
+-cinématique montrant l'abordage sur le galion espagnol et les marins possédés
+-combat tutoriel contre le capitaine des possédés
+-cinématique avec Satan
+*Chapitre 1 :
+-
