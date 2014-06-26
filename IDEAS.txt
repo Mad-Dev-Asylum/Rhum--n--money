@@ -13,3 +13,16 @@ cône de flamme, coûte de l'alcoolémie
 de l'alcoolémie
 -Oeil de rubis => lorsque activé, enlève son bandeau noir sur l'oeil, tire un laser géant, coûte de l'alcoolémie
 
+Gameplay : Plate-forme/Shoot 'em up
+Les ennemis en mourant lâchent du rhum, qui peut être ramassé pour augmenter la jauge d'alcoolémie du héros. Celle-ci peut
+être dépensée pour soit régénérer sa vie, soit utiliser ses pouvoirs spéciaux.
+-> barils de poudre, qui serviraient de grenades ?
+
+Boss :
+-deux corsaires
+Un corsaire anglais et un français, qui font un boss double
+-un autre capitaine pirate, rival du héros, qui s'est emparé d'un relique avant lui
+-le Kraken
+-un shoggoth
+-le capitaine possédé du début
+-Cthulhu
