@@ -1,8 +1,12 @@
-- Barrils de poudre grenade
-- Affronter Cthulhu
-- Pistolet-gatling
-- rhum = popo de heal
-- sabre enflammé
-- perroquet démoniaque
-- bandeau lazer
-- boss intermédiaire Shoggoth
+Synopsis :
+Le capitaine pirate (NOM A DETERMINER) arraisonne un galion espagnol. Cependant, ce dernier est
+
+Reliques (par ordre d'obtention) :
+-Sabre enflammé => effet de flamme qui se prolonge un peu au-delà du coup + coup spécial ; tend l'épée en avant, 
+cône de flamme, coûte de l'alcoolémie
+-Pistogatling => pas de rechargement
+-Tricorne des enfers => A DETERMINER
+-Perroquet démoniaque (c'est un corbeau, en fait) => A DETERMINER ; attaque tous les ennmis sur l'écran lorsque activé, coûte 
+de l'alcoolémie
+-Oeil de rubis => lorsque activé, enlève son bandeau noir sur l'oeil, tire un laser géant, coûte de l'alcoolémie
+
