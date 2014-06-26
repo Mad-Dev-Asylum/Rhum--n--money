@@ -28,7 +28,7 @@ int initSDL(){
 	exit(EXIT_FAILURE);
     }
 
-    SDL_WM_SetCaption("<enter name here>", "<enter name here>");
+    SDL_WM_SetCaption("Rhum 'n' Money", "Rhum 'n' Money");
 
     return(1);
 }
@@ -39,6 +39,7 @@ int menu(){
     widget * background;
     widget * new_game;
     widget * load_game;
+    widget * options;
     widget * scores;
     widget * credits;
     widget * quit;
@@ -48,15 +49,17 @@ int menu(){
     /* LOAD */
     background = WLoadBMP("IMG/menu/background.bmp", 0, 0);
     new_game = WLoadBMP("IMG/menu/newgame.bmp", 10, 10);
-    load_game = WLoadBMP("IMG/menu/loadgame.bmp", 10, 110);
-    scores = WLoadBMP("IMG/menu/scores.bmp", 10, 210);
-    credits = WLoadBMP("IMG/menu/credits.bmp", 10, 310);
+    load_game = WLoadBMP("IMG/menu/loadgame.bmp", 10, 90);
+    options = WLoadBMP("IMG/menu/options.bmp", 10, 170);
+    scores = WLoadBMP("IMG/menu/scores.bmp", 10, 250);
+    credits = WLoadBMP("IMG/menu/credits.bmp", 10, 330);
     quit = WLoadBMP("IMG/menu/quit.bmp", 10, 410);
 
     /* BLIT */
     WBlit(background);
     WBlit(new_game);
     WBlit(load_game);
+    WBlit(options);
     WBlit(scores);
     WBlit(credits);
     WBlit(quit);
@@ -78,6 +81,9 @@ int menu(){
 		    else if (event.button.x >= load_game->pos.x && event.button.x < load_game->pos.x + WGetWidth(load_game) && event.button.y >= load_game->pos.y && event.button.y < load_game->pos.y + WGetHeight(load_game)){
 			loadGame();
 		    }
+		    else if (event.button.x >= options->pos.x && event.button.x < options->pos.x + WGetWidth(options) && event.button.y >= options->pos.y && event.button.y < options->pos.y + WGetHeight(options)){
+			showOptions();
+		    }
 		    else if (event.button.x >= scores->pos.x && event.button.x < scores->pos.x + WGetWidth(scores) && event.button.y >= scores->pos.y && event.button.y < scores->pos.y + WGetHeight(scores)){
 			showScores();
 		    }
@@ -96,6 +102,7 @@ int menu(){
     WFree(background);
     WFree(new_game);
     WFree(load_game);
+    WFree(options);
     WFree(scores);
     WFree(credits);
     WFree(quit);
@@ -113,6 +120,11 @@ int newGame(){
 int loadGame(){
     printf("¤ Loading old save...\n");
     return(1);
+}
+
+
+void showOptions(){
+    printf("¤ Showing options...\n");
 }
 
 

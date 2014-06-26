@@ -7,6 +7,7 @@ int initSDL();
 int menu();
 int newGame();
 int loadGame();
+void showOptions();
 void showScores();
 void showCredits();
 
