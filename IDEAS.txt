@@ -17,6 +17,7 @@ Gameplay : Plate-forme/Shoot 'em up
 Les ennemis en mourant lâchent du rhum, qui peut être ramassé pour augmenter la jauge d'alcoolémie du héros. Celle-ci peut
 être dépensée pour soit régénérer sa vie, soit utiliser ses pouvoirs spéciaux.
 -> barils de poudre, qui serviraient de grenades ?
+-> TOUCHES A DEFINIR
 
 Boss :
 -deux corsaires
@@ -25,4 +26,4 @@ Un corsaire anglais et un français, qui font un boss double
 -le Kraken
 -un shoggoth
 -le capitaine possédé du début
--Cthulhu
+-Cthulhu (qui sort du corps du boss précédent avoir sa mort)
