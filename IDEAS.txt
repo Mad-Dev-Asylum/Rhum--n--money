@@ -1,5 +1,8 @@
 Synopsis :
-Le capitaine pirate (NOM A DETERMINER) arraisonne un galion espagnol. Cependant, ce dernier est
+Le capitaine pirate (NOM A DETERMINER) arraisonne un galion espagnol. Cependant, l'équipage de ce dernier est possédé par 
+Cthulhu et l'abordage se passe mal. Le héros se fait tuer. Satan s'adresse à lui en enfer et lui propose de lutter en son
+nom contre Cthulhu ([insérer motif de jalousie entre seigneurs du mal ou whatever]). Ramené à la vie, il part à la recherche
+des reliques du Démon.
 
 Reliques (par ordre d'obtention) :
 -Sabre enflammé => effet de flamme qui se prolonge un peu au-delà du coup + coup spécial ; tend l'épée en avant, 
