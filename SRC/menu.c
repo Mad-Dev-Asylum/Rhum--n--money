@@ -45,6 +45,7 @@ int menu(){
     widget * quit;
     SDL_Event event;
     char cont = 1;
+    char select = 1;
 
     /* LOAD */
     background = WLoadBMP("IMG/menu/background.bmp", 0, 0);
@@ -73,6 +74,8 @@ int menu(){
 	    case SDL_QUIT :
 		cont = 0;
 		break;
+
+	    /* For a mouse event */
 	    case SDL_MOUSEBUTTONDOWN :
 		if (event.button.button == SDL_BUTTON_LEFT){
 		    if (event.button.x >= new_game->pos.x && event.button.x < new_game->pos.x + WGetWidth(new_game) && event.button.y >= new_game->pos.y && event.button.y < new_game->pos.y + WGetHeight(new_game)){
@@ -93,6 +96,43 @@ int menu(){
 		    else if (event.button.x >= quit->pos.x && event.button.x < quit->pos.x + WGetWidth(quit) && event.button.y >= quit->pos.y && event.button.y < quit->pos.y + WGetHeight(quit)){
 			cont = 0;
 		    }
+		}
+		break;
+	    /* For a keybord event */
+	    case SDL_KEYDOWN :
+		switch (event.key.keysym.sym){
+		    case SDLK_DOWN : 
+			if (select < 6){
+			    select ++;
+			}
+			break;
+		    case SDLK_UP :
+			if (select > 1){
+			    select --;
+			}
+			break;
+		    case SDLK_RETURN :
+			switch (select){
+			    case 1 :
+				newGame();
+				break;
+			    case 2 :
+				loadGame();
+				break;
+			    case 3 :
+				showOptions();
+				break;
+			    case 4 :
+				showScores();
+				break;
+			    case 5 :
+				showCredits();
+				break;
+			    case 6 :
+				cont = 0;
+				break;
+			}
+			break;
 		}
 		break;
 	}
