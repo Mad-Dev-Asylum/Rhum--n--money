@@ -1,8 +1,37 @@
-- Barrils de poudre grenade
-- Affronter Cthulhu
-- Pistolet-gatling
-- rhum = popo de heal
-- sabre enflammé
-- perroquet démoniaque
-- bandeau lazer
-- boss intermédiaire Shoggoth
+Synopsis :
+Le capitaine pirate (NOM A DETERMINER) arraisonne un galion espagnol. Cependant, l'équipage de ce dernier est possédé par 
+Cthulhu et l'abordage se passe mal. Le héros se fait tuer. Satan s'adresse à lui en enfer et lui propose de lutter en son
+nom contre Cthulhu ([insérer motif de jalousie entre seigneurs du mal ou whatever]). Ramené à la vie, il part à la recherche
+des reliques du Démon.
+
+Reliques (par ordre d'obtention) :
+-Sabre enflammé => effet de flamme qui se prolonge un peu au-delà du coup + coup spécial ; tend l'épée en avant, 
+cône de flamme, coûte de l'alcoolémie
+-Pistogatling => pas de rechargement
+-Tricorne des enfers => A DETERMINER
+-Perroquet démoniaque (c'est un corbeau, en fait) => A DETERMINER ; attaque tous les ennmis sur l'écran lorsque activé, coûte 
+de l'alcoolémie
+-Oeil de rubis => lorsque activé, enlève son bandeau noir sur l'oeil, tire un laser géant, coûte de l'alcoolémie
+
+Gameplay : Plate-forme/Shoot 'em up
+Les ennemis en mourant lâchent du rhum, qui peut être ramassé pour augmenter la jauge d'alcoolémie du héros. Celle-ci peut
+être dépensée pour soit régénérer sa vie, soit utiliser ses pouvoirs spéciaux.
+-> barils de poudre, qui serviraient de grenades ?
+-> TOUCHES A DEFINIR
+
+Boss :
+-deux corsaires
+Un corsaire anglais et un français, qui font un boss double
+-un autre capitaine pirate, rival du héros, qui s'est emparé d'un relique avant lui
+-le Kraken
+-un shoggoth
+-le capitaine possédé du début
+-Cthulhu (qui sort du corps du boss précédent avoir sa mort)
+
+Scénario/niveaux :
+*Chapitre 0 :
+-cinématique montrant l'abordage sur le galion espagnol et les marins possédés
+-combat tutoriel contre le capitaine des possédés
+-cinématique avec Satan
+*Chapitre 1 :
+-
