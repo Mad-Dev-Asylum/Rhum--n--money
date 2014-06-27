@@ -43,6 +43,7 @@ int menu(){
     widget * scores;
     widget * credits;
     widget * quit;
+    widget * tmp;
     SDL_Event event;
     char cont = 1;
     char select = 1;
@@ -56,49 +57,50 @@ int menu(){
     credits = WLoadBMP("IMG/menu/credits.bmp", 10, 330);
     quit = WLoadBMP("IMG/menu/quit.bmp", 10, 410);
 
-    /* BLIT */
+    /* ADD CONTENT TO BACKGROUND */
+    WAddContent(background, new_game);
+    WAddContent(background, load_game);
+    WAddContent(background, options);
+    WAddContent(background, scores);
+    WAddContent(background, credits);
+    WAddContent(background, quit);
+
     WBlit(background);
-    WBlit(new_game);
-    WBlit(load_game);
-    WBlit(options);
-    WBlit(scores);
-    WBlit(credits);
-    WBlit(quit);
 
     SDL_Flip(screen);
 
     /* EVENTS */
     while(cont){
 	SDL_WaitEvent(&event);
-	switch (event.type){
-	    case SDL_QUIT :
-		cont = 0;
-		break;
-
-	    /* For a mouse event */
+	switch(event.type){
+	    /* Left click */
 	    case SDL_MOUSEBUTTONDOWN :
-		if (event.button.button == SDL_BUTTON_LEFT){
-		    if (event.button.x >= new_game->pos.x && event.button.x < new_game->pos.x + WGetWidth(new_game) && event.button.y >= new_game->pos.y && event.button.y < new_game->pos.y + WGetHeight(new_game)){
+		if (event.button.button = SDL_BUTTON_LEFT){
+		    tmp = WArea(background, event.button.x, event.button.y);
+		    if (tmp == new_game){
 			newGame();
 		    }
-		    else if (event.button.x >= load_game->pos.x && event.button.x < load_game->pos.x + WGetWidth(load_game) && event.button.y >= load_game->pos.y && event.button.y < load_game->pos.y + WGetHeight(load_game)){
+		    if (tmp == load_game){
 			loadGame();
 		    }
-		    else if (event.button.x >= options->pos.x && event.button.x < options->pos.x + WGetWidth(options) && event.button.y >= options->pos.y && event.button.y < options->pos.y + WGetHeight(options)){
+		    if (tmp == options){
 			showOptions();
 		    }
-		    else if (event.button.x >= scores->pos.x && event.button.x < scores->pos.x + WGetWidth(scores) && event.button.y >= scores->pos.y && event.button.y < scores->pos.y + WGetHeight(scores)){
+		    if (tmp == scores){
 			showScores();
 		    }
-		    else if (event.button.x >= credits->pos.x && event.button.x < credits->pos.x + WGetWidth(credits) && event.button.y >= credits->pos.y && event.button.y < credits->pos.y + WGetHeight(credits)){
+		    if (tmp == credits){
 			showCredits();
 		    }
-		    else if (event.button.x >= quit->pos.x && event.button.x < quit->pos.x + WGetWidth(quit) && event.button.y >= quit->pos.y && event.button.y < quit->pos.y + WGetHeight(quit)){
+		    if (tmp == quit){
 			cont = 0;
 		    }
 		}
 		break;
-	    /* For a keybord event */
+	    case SDL_QUIT :
+		cont = 0;
+		break;
+	    /* Keyboard event */
 	    case SDL_KEYDOWN :
 		switch (event.key.keysym.sym){
 		    case SDLK_DOWN : 
@@ -140,12 +142,6 @@ int menu(){
 
     /* FREE */
     WFree(background);
-    WFree(new_game);
-    WFree(load_game);
-    WFree(options);
-    WFree(scores);
-    WFree(credits);
-    WFree(quit);
 
     return(1);
 }

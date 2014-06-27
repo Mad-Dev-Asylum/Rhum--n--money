@@ -9,3 +9,10 @@
  - Démarrage du projet
  - Ébauche de scénario/gameplay
  - Mise au point d'un menu rudimentaire
+
+> 27/06/14
+----------
+ - Creation de la structure de "widget" et des fonctions correspondantes, pour
+ créer, détruire, et gérer des Surfaces SDL d'une manière plus intuitive
+ - Portage du projet sur github
+ - Premiers designs de personnages et de scenes des cinématiques
