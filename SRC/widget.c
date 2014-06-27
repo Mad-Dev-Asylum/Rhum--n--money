@@ -19,6 +19,7 @@ widget * WCreate(){
     new->pos.y = 0;
     new->container = NULL;
     new->content.n = 0;
+    new->clickable = 1;
 }
 
 
@@ -93,7 +94,7 @@ widget * WArea(widget * w, int x, int y){
     int i;
 
     for (i=0; i<w->content.n; i++){
-	if (x >= w->content.tab[i]->pos.x && x < w->content.tab[i]->pos.x + WGetWidth(w->content.tab[i]) && y >= w->content.tab[i]->pos.y && y < w->content.tab[i]->pos.y + WGetHeight(w->content.tab[i]))
+	if (w->clickable && x >= w->content.tab[i]->pos.x && x < w->content.tab[i]->pos.x + WGetWidth(w->content.tab[i]) && y >= w->content.tab[i]->pos.y && y < w->content.tab[i]->pos.y + WGetHeight(w->content.tab[i]))
 	    return(w->content.tab[i]);
     }
 

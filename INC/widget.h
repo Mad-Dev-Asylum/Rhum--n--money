@@ -25,6 +25,7 @@ typedef struct widget_struct{
    SDL_Rect pos;
    widget * container;		    // In which widget this one is contained
    WList content;		    // Its content
+   char clickable;
 }widget;
 
 /* FUNCTIONS */

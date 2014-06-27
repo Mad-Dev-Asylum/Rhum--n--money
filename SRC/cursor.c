@@ -3,6 +3,7 @@
 
 cursor * WCreateCursor(widget * w, side s){
     cursor * new = (cursor *) malloc(sizeof(cursor));
+    w->clickable = 0;
     new->w = w;
 
     switch (s){
