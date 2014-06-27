@@ -5,6 +5,7 @@
 #include "config.h"
 #include "structs.h"
 #include "widget.h"
+#include "cursor.h"
 
 
 int main(int argc, char * argv[]){
@@ -30,6 +31,8 @@ int initSDL(){
 
     SDL_WM_SetCaption("Rhum 'n' Money", "Rhum 'n' Money");
 
+    SDL_ShowCursor(SDL_DISABLE);
+
     return(1);
 }
 
@@ -43,6 +46,8 @@ int menu(){
     widget * scores;
     widget * credits;
     widget * quit;
+    widget * w_curs;
+    cursor * curs;
     widget * tmp;
     SDL_Event event;
     char cont = 1;
@@ -56,6 +61,7 @@ int menu(){
     scores = WLoadBMP("IMG/menu/scores.bmp", 10, 250);
     credits = WLoadBMP("IMG/menu/credits.bmp", 10, 330);
     quit = WLoadBMP("IMG/menu/quit.bmp", 10, 410);
+    w_curs = WLoadIMG("IMG/menu/cursor.gif", 0, 0);
 
     /* ADD CONTENT TO BACKGROUND */
     WAddContent(background, new_game);
@@ -64,6 +70,10 @@ int menu(){
     WAddContent(background, scores);
     WAddContent(background, credits);
     WAddContent(background, quit);
+    WAddContent(background, w_curs);
+
+    /* CREATE THE CURSOR */
+    curs = WCreateCursor(w_curs, RIGHT);
 
     WBlit(background);
 
@@ -137,10 +147,17 @@ int menu(){
 			break;
 		}
 		break;
+	    /* If the mouse moves... */
+	    case SDL_MOUSEMOTION :
+		WMoveCursor(curs, event.button.x, event.button.y);
+		WBlit(background);
+		SDL_Flip(screen);
+		break;
 	}
     }
 
     /* FREE */
+    WFreeCursor(curs);
     WFree(background);
 
     return(1);

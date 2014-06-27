@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -c -g
-LDFLAGS = -g -lm -lSDL
+LDFLAGS = -g -lm -lSDL -lSDL_image
 SRC_DIR = SRC
 INC_DIR = INC
 OBJ_DIR = OBJ

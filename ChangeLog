@@ -12,7 +12,10 @@
 
 > 27/06/14
 ----------
- - Creation de la structure de "widget" et des fonctions correspondantes, pour
- créer, détruire, et gérer des Surfaces SDL d'une manière plus intuitive
+ - Creation du type "widget" et des fonctions correspondantes, pour créer,
+ détrruire, et gérer des Surfaces SDL d'une manière plus intuitive
  - Portage du projet sur github
  - Premiers designs de personnages et de scenes des cinématiques
+ - Création du type "cursor" à partir du type widget, qui peut contenir une
+ image dont un des cotés "pointe" vers un objet
+ - Gestion de la souris, avec cursor custom, dans le menu principal

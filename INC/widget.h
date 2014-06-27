@@ -37,6 +37,8 @@ int WGetWidth(widget * w);
 widget * WArea(widget * w, int x, int y);
 widget * WLoadBMP(char * url, int x, int y);
 int WBlit(widget * w);
+void WMove(widget * w, int x, int y);
+widget * WLoadIMG(char * url, int x, int y);
 
 
 #endif

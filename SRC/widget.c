@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include "widget.h"
 #include "config.h"
 #include "structs.h"
@@ -54,8 +55,9 @@ int WRmContent(widget * w_container, widget * w_content){
     int i = 0;
     char cont = 1;
 
-    if (w_container == NULL || w_content == NULL)
+    if (w_container == NULL || w_content == NULL){
 	return(0);
+    }
 
     for (i=0; i<w_container->content.n && cont; i++){
 	if (w_container->content.tab[i] == w_content){
@@ -63,8 +65,9 @@ int WRmContent(widget * w_container, widget * w_content){
 	}
     }
 
-    if (cont = 1)
+    if (cont){
 	return(0);
+    }
 
     w_container->content.n --;
     w_container->content.tab[i] = w_container->content.tab[w_container->content.n];
@@ -118,4 +121,21 @@ int WBlit(widget * w){
     }
 
     return(1);
+}
+
+
+void WMove(widget * w, int x, int y){
+    w->pos.x = x;
+    w->pos.y = y;
+}
+
+
+/* Requires SDL_image */
+widget * WLoadIMG(char * url, int x, int y){
+    widget * new = WCreate();
+    new->surf = IMG_Load(url);
+    new->pos.x = x;
+    new->pos.y = y;
+
+    return(new);
 }
