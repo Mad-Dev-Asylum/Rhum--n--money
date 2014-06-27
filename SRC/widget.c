@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <stdarg.h>
 #include "widget.h"
 #include "config.h"
 #include "structs.h"
@@ -14,20 +15,32 @@
 /* CREATION */
 widget * WCreate(){
     widget * new = (widget *)malloc(sizeof(widget));
-    new->surf = NULL;
+    new->pict = NULL;
     new->pos.x = 0;
     new->pos.y = 0;
     new->container = NULL;
     new->content.n = 0;
     new->clickable = 1;
+    new->timer.cnt = (int) SDL_GetTicks();
+    new->timer.max = 0;
 }
 
 
 /* DESTRUCTION */
 void WFree(widget * w){
     int i;
+    WLayer * cur, * tmp;
 
-    SDL_FreeSurface(w->surf);
+    // Free all the surfaces
+    for (cur = w->pict->next; cur->next != w->pict; ){
+	tmp = cur;
+	cur = cur->next;
+	SDL_FreeSurface(tmp->surf);
+	free(tmp);
+    }
+    SDL_FreeSurface(w->pict->surf);
+    free(w->pict);
+	
     // Free all the inner widgets
     for (i=0; i<w->content.n; i++){
 	WFree(w->content.tab[i]);
@@ -80,12 +93,12 @@ int WRmContent(widget * w_container, widget * w_content){
 
 /* INFOS */
 int WGetHeight(widget * w){
-    return((w->surf)->h);
+    return((w->pict->surf)->h);
 }
 
 
 int WGetWidth(widget * w){
-    return((w->surf)->w);
+    return((w->pict->surf)->w);
 }
 
 
@@ -103,22 +116,12 @@ widget * WArea(widget * w, int x, int y){
 
 
 /* OTHERS */
-widget * WLoadBMP(char * url, int x, int y){
-    widget * new = WCreate();
-    new->surf = SDL_LoadBMP(url);
-    new->pos.x = x;
-    new->pos.y = y;
-
-    return(new);
-}
-
-
 int WBlit(widget * w){
     int i;
 
-    SDL_BlitSurface(w->surf, NULL, screen, &(w->pos));
+    SDL_BlitSurface(w->pict->surf, NULL, screen, &(w->pos));
     for (i=0; i<w->content.n; i++){
-	SDL_BlitSurface(w->content.tab[i]->surf, NULL, screen, &(w->content.tab[i]->pos));
+	SDL_BlitSurface(w->content.tab[i]->pict->surf, NULL, screen, &(w->content.tab[i]->pos));
     }
 
     return(1);
@@ -132,11 +135,49 @@ void WMove(widget * w, int x, int y){
 
 
 /* Requires SDL_image */
-widget * WLoadIMG(char * url, int x, int y){
+widget * WLoadIMG(int delay, int x, int y, char * url_base, ...){
+    va_list ap;
+    char * url;
+    WLayer * lay, * last;
+    
     widget * new = WCreate();
-    new->surf = IMG_Load(url);
+    new->timer.max = delay;
     new->pos.x = x;
     new->pos.y = y;
+    // We load the first layer
+    lay = (WLayer *) malloc(sizeof(WLayer));
+    lay->surf = IMG_Load(url_base);
+    lay->next = lay;
+    new->pict = lay;
+    last = lay;
+
+    // We load every picture
+    va_start(ap, url_base);
+    while (url = va_arg(ap, char *)){	    // Stops at NULL
+	lay = (WLayer *) malloc(sizeof(WLayer));
+	lay->surf = IMG_Load(url);
+	lay->next = new->pict;
+	last->next = lay;
+	last = lay;
+    }
+    va_end(ap);
 
     return(new);
+}
+
+
+void WFlip(widget * w){
+    int i;
+    widget * cur;
+    int curtime = SDL_GetTicks();
+
+    for (i=0; i<w->content.n; i++){
+	cur = w->content.tab[i];
+	if (cur->timer.max != 0){
+	    if (curtime - cur->timer.cnt >= cur->timer.max){
+		cur->pict = cur->pict->next;
+		cur->timer.cnt = curtime;
+	    }
+	}
+    }
 }

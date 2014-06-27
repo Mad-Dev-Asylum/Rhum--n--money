@@ -9,11 +9,22 @@
 /* STRUCTS */
 typedef struct widget_struct widget;
 typedef struct WList_struct WList;
+typedef struct WLayer_struct WLayer;
 
 typedef struct{
     int x;
     int y;
 }position;
+
+typedef struct{
+    int cnt;
+    int max;
+}WCounter;
+
+typedef struct WLayer_struct{
+    SDL_Surface * surf;
+    WLayer * next;
+}WLayer;
 
 typedef struct WList_struct{
    widget * tab[MAX_WIDGETS];	    // What widget it contains
@@ -21,11 +32,12 @@ typedef struct WList_struct{
 }WList;
 
 typedef struct widget_struct{
-   SDL_Surface * surf;
-   SDL_Rect pos;
+   WLayer * pict;		    // The picture
+   SDL_Rect pos;		    // Its position
    widget * container;		    // In which widget this one is contained
    WList content;		    // Its content
-   char clickable;
+   char clickable;		    // If it's clickable or "transparent"
+   WCounter timer;		    // For animated widget, useful to time the cycling of layers
 }widget;
 
 /* FUNCTIONS */
@@ -36,10 +48,10 @@ int WRmContent(widget * w_container, widget * w_content);
 int WGetHeight(widget * w);
 int WGetWidth(widget * w);
 widget * WArea(widget * w, int x, int y);
-widget * WLoadBMP(char * url, int x, int y);
 int WBlit(widget * w);
 void WMove(widget * w, int x, int y);
-widget * WLoadIMG(char * url, int x, int y);
+widget * WLoadIMG(int delay, int x, int y, char * url_base, ...);
+void WFlip(widget * w);
 
 
 #endif

@@ -54,14 +54,14 @@ int menu(){
     char select = 1;
 
     /* LOAD */
-    background = WLoadBMP("IMG/menu/background.bmp", 0, 0);
-    new_game = WLoadBMP("IMG/menu/newgame.bmp", 10, 10);
-    load_game = WLoadBMP("IMG/menu/loadgame.bmp", 10, 90);
-    options = WLoadBMP("IMG/menu/options.bmp", 10, 170);
-    scores = WLoadBMP("IMG/menu/scores.bmp", 10, 250);
-    credits = WLoadBMP("IMG/menu/credits.bmp", 10, 330);
-    quit = WLoadBMP("IMG/menu/quit.bmp", 10, 410);
-    w_curs = WLoadIMG("IMG/menu/cursor.gif", 0, 0);
+    background = WLoadIMG(0, 0, 0, "IMG/menu/background.bmp", NULL);
+    new_game = WLoadIMG(0, 10, 10, "IMG/menu/newgame.bmp", NULL);
+    load_game = WLoadIMG(0, 10, 90, "IMG/menu/loadgame.bmp", NULL);
+    options = WLoadIMG(0, 10, 170, "IMG/menu/options.bmp", NULL);
+    scores = WLoadIMG(0, 10, 250, "IMG/menu/scores.bmp", NULL);
+    credits = WLoadIMG(0, 10, 330, "IMG/menu/credits.bmp", NULL);
+    quit = WLoadIMG(0, 10, 410, "IMG/menu/quit.bmp", NULL);
+    w_curs = WLoadIMG(130, 0, 0, "IMG/cursor/cursor1.png", "IMG/cursor/cursor2.png", "IMG/cursor/cursor3.png", "IMG/cursor/cursor4.png", "IMG/cursor/cursor5.png", "IMG/cursor/cursor6.png", NULL);
 
     /* ADD CONTENT TO BACKGROUND */
     WAddContent(background, new_game);
@@ -81,7 +81,7 @@ int menu(){
 
     /* EVENTS */
     while(cont){
-	SDL_WaitEvent(&event);
+	SDL_PollEvent(&event);
 	switch(event.type){
 	    /* Left click */
 	    case SDL_MOUSEBUTTONDOWN :
@@ -150,10 +150,14 @@ int menu(){
 	    /* If the mouse moves... */
 	    case SDL_MOUSEMOTION :
 		WMoveCursor(curs, event.button.x, event.button.y);
-		WBlit(background);
-		SDL_Flip(screen);
 		break;
 	}
+	event.type = 0;
+
+	/* Refresh */
+	WFlip(background);
+	WBlit(background);
+	SDL_Flip(screen);
     }
 
     /* FREE */
