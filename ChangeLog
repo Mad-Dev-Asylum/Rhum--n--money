@@ -19,3 +19,7 @@
  - Création du type "cursor" à partir du type widget, qui peut contenir une
  image dont un des cotés "pointe" vers un objet
  - Gestion de la souris, avec cursor custom, dans le menu principal
+
+> 05/07/14
+----------
+ - Gestion des animations qui ne bouclent qu'une fois dans le type "widget"
