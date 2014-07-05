@@ -16,6 +16,7 @@
 widget * WCreate(){
     widget * new = (widget *)malloc(sizeof(widget));
     new->pict = NULL;
+    new->first = NULL;
     new->pos.x = 0;
     new->pos.y = 0;
     new->container = NULL;
@@ -23,6 +24,7 @@ widget * WCreate(){
     new->clickable = 1;
     new->timer.cnt = (int) SDL_GetTicks();
     new->timer.max = 0;
+    new->type = FIXED;
 }
 
 
@@ -135,7 +137,7 @@ void WMove(widget * w, int x, int y){
 
 
 /* Requires SDL_image */
-widget * WLoadIMG(int delay, int x, int y, char * url_base, ...){
+widget * WLoadIMG(img_type type, int delay, int x, int y, char * url_base, ...){
     va_list ap;
     char * url;
     WLayer * lay, * last;
@@ -144,11 +146,13 @@ widget * WLoadIMG(int delay, int x, int y, char * url_base, ...){
     new->timer.max = delay;
     new->pos.x = x;
     new->pos.y = y;
+    new->type = type;
     // We load the first layer
     lay = (WLayer *) malloc(sizeof(WLayer));
     lay->surf = IMG_Load(url_base);
     lay->next = lay;
     new->pict = lay;
+    new->first = lay->surf;
     last = lay;
 
     // We load every picture
@@ -173,11 +177,27 @@ void WFlip(widget * w){
 
     for (i=0; i<w->content.n; i++){
 	cur = w->content.tab[i];
-	if (cur->timer.max != 0){
+	if (cur->type != FIXED){
 	    if (curtime - cur->timer.cnt >= cur->timer.max){
 		cur->pict = cur->pict->next;
 		cur->timer.cnt = curtime;
+		if (cur->type == ANIM && cur->pict->surf == cur->first){
+		    // If the image is only animated, we stop the animation after one loop
+		    cur->type = FIXED;
+		}
 	    }
 	}
     }
+}
+
+
+
+int WReloadAnim(widget * w){
+    /* Reloads an animation */
+    if (w->type != FIXED){
+	return(0);
+    }
+    w->type = ANIM;
+    
+    return(1);
 }

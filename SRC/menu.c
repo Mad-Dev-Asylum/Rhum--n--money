@@ -54,14 +54,14 @@ int menu(){
     char select = 1;
 
     /* LOAD */
-    background = WLoadIMG(0, 0, 0, "IMG/menu/background.bmp", NULL);
-    new_game = WLoadIMG(0, 10, 10, "IMG/menu/newgame.bmp", NULL);
-    load_game = WLoadIMG(0, 10, 90, "IMG/menu/loadgame.bmp", NULL);
-    options = WLoadIMG(0, 10, 170, "IMG/menu/options.bmp", NULL);
-    scores = WLoadIMG(0, 10, 250, "IMG/menu/scores.bmp", NULL);
-    credits = WLoadIMG(0, 10, 330, "IMG/menu/credits.bmp", NULL);
-    quit = WLoadIMG(0, 10, 410, "IMG/menu/quit.bmp", NULL);
-    w_curs = WLoadIMG(130, 0, 0, "IMG/cursor/cursor1.png", "IMG/cursor/cursor2.png", "IMG/cursor/cursor3.png", "IMG/cursor/cursor4.png", "IMG/cursor/cursor5.png", "IMG/cursor/cursor6.png", NULL);
+    background = WLoadIMG(FIXED, 0, 0, 0, "IMG/menu/background.bmp", NULL);
+    new_game = WLoadIMG(FIXED, 0, 10, 10, "IMG/menu/newgame.bmp", NULL);
+    load_game = WLoadIMG(FIXED, 0, 10, 90, "IMG/menu/loadgame.bmp", NULL);
+    options = WLoadIMG(FIXED, 0, 10, 170, "IMG/menu/options.bmp", NULL);
+    scores = WLoadIMG(FIXED, 0, 10, 250, "IMG/menu/scores.bmp", NULL);
+    credits = WLoadIMG(FIXED, 0, 10, 330, "IMG/menu/credits.bmp", NULL);
+    quit = WLoadIMG(FIXED, 0, 10, 410, "IMG/menu/quit.bmp", NULL);
+    w_curs = WLoadIMG(LOOP, 130, 0, 0, "IMG/cursor/cursor1.png", "IMG/cursor/cursor2.png", "IMG/cursor/cursor3.png", "IMG/cursor/cursor4.png", "IMG/cursor/cursor5.png", "IMG/cursor/cursor6.png", NULL);
 
     /* ADD CONTENT TO BACKGROUND */
     WAddContent(background, new_game);
